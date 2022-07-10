@@ -1,19 +1,18 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/domain/usecases/hptv/get_top_rated_hptv.dart';
 import 'package:ditonton/presentation/bloc/hptv/hptv_top_rated_bloc.dart';
-import 'package:mockito/annotations.dart';
 import 'package:ditonton/domain/entities/hptv/hptv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import 'top_rated_hptv_bloc_test.mocks.dart';
+import '../../presentation/test_bloc/hptv.mocks.dart';
 
-@GenerateMocks([GetTopRatedHptv, HptvTopRatedBloc])
 void main() {
-  late MockGetTopRatedHptv mockGetTopRatedHptv;
-  late HptvTopRatedBloc hptvTopRatedBloc;
+  late MockGetTopRatedHptv
+  mockGetTopRatedHptv;
+  late HptvTopRatedBloc
+  hptvTopRatedBloc;
 
   setUp(() {
     mockGetTopRatedHptv 
@@ -36,8 +35,10 @@ void main() {
             .thenAnswer((_) async => Right(tvList));
         return hptvTopRatedBloc;
       },
-      act: (bloc) => bloc.add(HptvTopRatedGetEvent()),
-      expect: () => [HptvTopRatedLoading(), HptvTopRatedLoaded(tvList)],
+      act: (bloc)
+      => bloc.add(HptvTopRatedGetEvent()),
+      expect: ()
+      => [HptvTopRatedLoading(), HptvTopRatedLoaded(tvList)],
       verify: (bloc) {
         verify(mockGetTopRatedHptv.execute());
       },
@@ -50,7 +51,8 @@ void main() {
             .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
         return hptvTopRatedBloc;
       },
-      act: (bloc) => bloc.add(HptvTopRatedGetEvent()),
+      act: (bloc)
+      => bloc.add(HptvTopRatedGetEvent()),
       expect: () =>
           [HptvTopRatedLoading(), const HptvTopRatedError('Server Failure')],
       verify: (bloc) {

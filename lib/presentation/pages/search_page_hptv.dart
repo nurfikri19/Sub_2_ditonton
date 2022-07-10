@@ -27,7 +27,7 @@ class SearchHptvPage extends StatelessWidget {
               },
               decoration: InputDecoration(
                 hintText: 'Search title',
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: Icon(Icons.search_outlined),
                 border: OutlineInputBorder(),
               ),
               textInputAction: TextInputAction.search,

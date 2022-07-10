@@ -4,10 +4,13 @@ import 'package:ditonton/domain/entities/hptv/hptv.dart';
 import 'package:ditonton/presentation/pages/hptv_detail_page.dart';
 import 'package:flutter/material.dart';
 
-class HptvCard extends StatelessWidget {
-  final Hptv tv;
+class HptvCard
+    extends StatelessWidget {
+  final Hptv
+  tv;
 
-  HptvCard(this.tv);
+  HptvCard
+      (this.tv);
 
   @override
   Widget build(BuildContext context) {

@@ -1,6 +1,7 @@
 part of 'hptv_detail_bloc.dart';
 
-abstract class HptvDetailState
+abstract
+class HptvDetailState
     extends Equatable {
   const HptvDetailState();
 
@@ -16,12 +17,14 @@ class HptvDetailLoading
 
 class HptvDetailError
     extends HptvDetailState {
-  final String message;
+  final
+  String message;
 
   const HptvDetailError(this.message);
 
   @override
-  List<Object> get props => [message];
+  List<Object> get props
+  => [message];
 }
 
 class HptvDetailLoaded
@@ -31,5 +34,6 @@ class HptvDetailLoaded
   const HptvDetailLoaded(this.hptvDetail);
 
   @override
-  List<Object> get props => [hptvDetail];
+  List<Object> get props
+  => [hptvDetail];
 }

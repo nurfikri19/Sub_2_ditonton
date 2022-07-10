@@ -1,11 +1,13 @@
 part of 'movie_search_bloc.dart';
 
-abstract class MovieSearchEvent
+abstract
+class MovieSearchEvent
     extends Equatable {
   const MovieSearchEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props
+  => [];
 }
 
 class MovieSearchSetEmpty
@@ -13,10 +15,13 @@ class MovieSearchSetEmpty
 
 class MovieSearchQueryEvent
     extends MovieSearchEvent {
-  final String query;
+  final String
+  query;
 
-  const MovieSearchQueryEvent(this.query);
+  const
+  MovieSearchQueryEvent(this.query);
 
   @override
-  List<Object> get props => [];
+  List<Object> get props
+  => [];
 }

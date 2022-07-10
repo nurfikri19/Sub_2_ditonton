@@ -11,24 +11,38 @@ part 'movie_watchlist_event.dart';
 part 'movie_watchlist_state.dart';
 
 class MovieWatchlistBloc
-    extends Bloc<MovieWatchlistEvent, MovieWatchlistState> {
-  static const watchlistAddSuccessMessage = 'Added to Watchlist';
-  static const watchlistRemoveSuccessMessage = 'Removed from Watchlist';
+    extends Bloc<MovieWatchlistEvent,
+        MovieWatchlistState> {
+  static
+  const watchlistAddSuccessMessage
+  = 'Added to Watchlist';
+  static
+  const watchlistRemoveSuccessMessage
+  = 'Removed from Watchlist';
 
-  final GetWatchlistMovies getWatchlistMovies;
-  final GetWatchListStatus getWatchListStatus;
-  final SaveWatchlist saveWatchlist;
-  final RemoveWatchlist removeWatchlist;
+  final GetWatchlistMovies
+  getWatchlistMovies;
+  final GetWatchListStatus
+  getWatchListStatus;
+  final SaveWatchlist
+  saveWatchlist;
+  final RemoveWatchlist
+  removeWatchlist;
 
   MovieWatchlistBloc({
-    required this.getWatchlistMovies,
-    required this.getWatchListStatus,
-    required this.saveWatchlist,
-    required this.removeWatchlist,
+    required this.
+    getWatchlistMovies,
+    required this.
+    getWatchListStatus,
+    required this.
+    saveWatchlist,
+    required this.
+    removeWatchlist,
   }) : super(MovieWatchlistEmpty()) {
     on<GetListEvent>((event, emit) async {
       emit(MovieWatchlistLoading());
-      final result = await getWatchlistMovies.execute();
+      final result
+      = await getWatchlistMovies.execute();
 
       result.fold(
             (failure) {
@@ -41,14 +55,17 @@ class MovieWatchlistBloc
     });
 
     on<GetStatusMovieEvent>((event, emit) async {
-      final result = await getWatchListStatus.execute(event.id);
+      final result
+      = await getWatchListStatus.execute(event.id);
 
       emit(MovieWatchlistStatusLoaded(result));
     });
 
     on<AddItemMovieEvent>((event, emit) async {
-      final movieDetail = event.movieDetail;
-      final result = await saveWatchlist.execute(movieDetail);
+      final movieDetail
+      = event.movieDetail;
+      final result
+      = await saveWatchlist.execute(movieDetail);
       result.fold(
             (failure) {
           emit(MovieWatchlistError(failure.message));
@@ -60,8 +77,10 @@ class MovieWatchlistBloc
     });
 
     on<RemoveItemMovieEvent>((event, emit) async {
-      final movieDetail = event.movieDetail;
-      final result = await removeWatchlist.execute(movieDetail);
+      final movieDetail
+      = event.movieDetail;
+      final result
+      = await removeWatchlist.execute(movieDetail);
 
       result.fold(
             (failure) {

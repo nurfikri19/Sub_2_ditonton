@@ -7,15 +7,19 @@ part 'hptv_top_rated_event.dart';
 part 'hptv_top_rated_state.dart';
 
 class HptvTopRatedBloc
-    extends Bloc<HptvTopRatedEvent, HptvTopRatedState> {
-  final GetTopRatedHptv getTopRatedHptv;
+    extends
+    Bloc<HptvTopRatedEvent,
+        HptvTopRatedState> {
+  final GetTopRatedHptv
+  getTopRatedHptv;
 
   HptvTopRatedBloc(
     this.getTopRatedHptv,
   ) : super(HptvTopRatedEmpty()) {
     on<HptvTopRatedGetEvent>((event, emit) async {
       emit(HptvTopRatedLoading());
-      final result = await getTopRatedHptv.execute();
+      final result
+      = await getTopRatedHptv.execute();
       result.fold(
         (failure) {
           emit(HptvTopRatedError(failure.message));

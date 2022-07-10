@@ -146,8 +146,8 @@ class DetailContent extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   isAddedWatchlist
-                                      ? Icon(Icons.check)
-                                      : Icon(Icons.add),
+                                      ? Icon(Icons.check_box_outlined)
+                                      : Icon(Icons.add_outlined),
                                   Text('Watchlist'),
                                 ],
                               ),

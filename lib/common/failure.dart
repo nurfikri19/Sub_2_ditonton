@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-abstract class Failure extends Equatable {
+abstract class Failure
+    extends Equatable {
   final String message;
 
   Failure(this.message);
@@ -9,14 +10,24 @@ abstract class Failure extends Equatable {
   List<Object> get props => [message];
 }
 
-class ServerFailure extends Failure {
-  ServerFailure(String message) : super(message);
+class ServerFailure
+    extends Failure {
+  ServerFailure(String message)
+      : super(message);
 }
 
-class ConnectionFailure extends Failure {
-  ConnectionFailure(String message) : super(message);
+class ConnectionFailure
+    extends Failure {
+  ConnectionFailure(String message)
+      : super(message);
 }
 
-class DatabaseFailure extends Failure {
+class DatabaseFailure
+    extends Failure {
   DatabaseFailure(String message) : super(message);
+}
+class SslFailure
+    extends Failure {
+  SslFailure(String message)
+      : super(message);
 }

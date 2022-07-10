@@ -1,11 +1,13 @@
 part of 'hptv_top_rated_bloc.dart';
 
-abstract class HptvTopRatedState
+abstract
+class HptvTopRatedState
     extends Equatable {
   const HptvTopRatedState();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props
+  => [];
 }
 
 class HptvTopRatedEmpty
@@ -16,20 +18,26 @@ class HptvTopRatedLoading
 
 class HptvTopRatedError
     extends HptvTopRatedState {
-  final String message;
+  final String
+  message;
 
-  const HptvTopRatedError(this.message);
+  const
+  HptvTopRatedError(this.message);
 
   @override
-  List<Object> get props => [message];
+  List<Object> get props
+  => [message];
 }
 
 class HptvTopRatedLoaded
     extends HptvTopRatedState {
-  final List<Hptv> result;
+  final List<Hptv>
+  result;
 
-  const HptvTopRatedLoaded(this.result);
+  const
+  HptvTopRatedLoaded(this.result);
 
   @override
-  List<Object> get props => [result];
+  List<Object> get props
+  => [result];
 }

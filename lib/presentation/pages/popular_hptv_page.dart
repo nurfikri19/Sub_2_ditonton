@@ -3,14 +3,19 @@ import 'package:ditonton/presentation/widgets/hptv_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class PopularHptvPage extends StatefulWidget {
-  static const ROUTE_NAME = '/popular-tv';
+class PopularHptvPage
+    extends StatefulWidget {
+  static
+  const ROUTE_NAME
+  = '/popular-tv';
 
   @override
-  _PopularHptvPageState createState() => _PopularHptvPageState();
+  _PopularHptvPageState createState()
+  => _PopularHptvPageState();
 }
 
-class _PopularHptvPageState extends State<PopularHptvPage> {
+class _PopularHptvPageState
+    extends State<PopularHptvPage> {
   @override
   void initState() {
     super.initState();
@@ -33,7 +38,8 @@ class _PopularHptvPageState extends State<PopularHptvPage> {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (state is HptvPopularLoaded) {
+            } else
+              if (state is HptvPopularLoaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final tvs = state.result[index];

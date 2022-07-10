@@ -3,14 +3,19 @@ import 'package:ditonton/presentation/widgets/hptv_card_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class TopRatedHptvPage extends StatefulWidget {
-  static const ROUTE_NAME = '/top-rated-tv';
+class TopRatedHptvPage
+    extends StatefulWidget {
+  static
+  const ROUTE_NAME
+  = '/top-rated-tv';
 
   @override
-  _TopRatedHptvPageState createState() => _TopRatedHptvPageState();
+  _TopRatedHptvPageState createState()
+  => _TopRatedHptvPageState();
 }
 
-class _TopRatedHptvPageState extends State<TopRatedHptvPage> {
+class _TopRatedHptvPageState
+    extends State<TopRatedHptvPage> {
   @override
   void initState() {
     super.initState();

@@ -8,14 +8,16 @@ part 'hptv_detail_state.dart';
 
 class HptvDetailBloc
     extends Bloc<HptvDetailEvent, HptvDetailState> {
-  final GetHptvDetail getHptvDetail;
+  final GetHptvDetail
+  getHptvDetail;
 
   HptvDetailBloc({
     required this.getHptvDetail,
   }) : super(HptvDetailEmpty()) {
     on<GetHptvDetailEvent>((event, emit) async {
       emit(HptvDetailLoading());
-      final result = await getHptvDetail.execute(event.id);
+      final result
+      = await getHptvDetail.execute(event.id);
       result.fold(
         (failure) {
           emit(HptvDetailError(failure.message));

@@ -11,24 +11,39 @@ part 'hptv_watchlist_event.dart';
 part 'hptv_watchlist_state.dart';
 
 class HptvWatchlistBloc
-    extends Bloc<HptvWatchlistEvent, HptvWatchlistState> {
-  static const watchlistAddSuccessMessage = 'Added to Watchlist';
-  static const watchlistRemoveSuccessMessage = 'Removed from Watchlist';
+    extends
+    Bloc<HptvWatchlistEvent,
+        HptvWatchlistState> {
+  static
+  const watchlistAddSuccessMessage
+  = 'Added to Watchlist';
+  static
+  const watchlistRemoveSuccessMessage
+  = 'Removed from Watchlist';
 
-  final GetWatchlistHptv getWatchlistHptv;
-  final GetWatchListStatusHptv getWatchListStatus;
-  final SaveWatchlistHptv saveWatchlist;
-  final RemoveWatchlistHptv removeWatchlist;
+  final GetWatchlistHptv
+  getWatchlistHptv;
+  final GetWatchListStatusHptv
+  getWatchListStatus;
+  final SaveWatchlistHptv
+  saveWatchlist;
+  final RemoveWatchlistHptv
+  removeWatchlist;
 
   HptvWatchlistBloc({
-    required this.getWatchlistHptv,
-    required this.getWatchListStatus,
-    required this.saveWatchlist,
-    required this.removeWatchlist,
+    required this.
+    getWatchlistHptv,
+    required this.
+    getWatchListStatus,
+    required this.
+    saveWatchlist,
+    required this.
+    removeWatchlist,
   }) : super(HptvWatchlistEmpty()) {
     on<GetListEvent>((event, emit) async {
       emit(HptvWatchlistLoading());
-      final result = await getWatchlistHptv.execute();
+      final result
+      = await getWatchlistHptv.execute();
       result.fold(
         (failure) {
           emit(HptvWatchlistError(failure.message));
@@ -40,15 +55,19 @@ class HptvWatchlistBloc
     });
 
     on<GetStatusTvEvent>((event, emit) async {
-      final id = event.id;
-      final result = await getWatchListStatus.execute(id);
+      final id
+      = event.id;
+      final result
+      = await getWatchListStatus.execute(id);
 
       emit(HptvWatchlistStatusLoaded(result));
     });
 
     on<AddItemTvEvent>((event, emit) async {
-      final hptvDetail = event.hptvDetail;
-      final result = await saveWatchlist.execute(hptvDetail);
+      final hptvDetail
+      = event.hptvDetail;
+      final result
+      = await saveWatchlist.execute(hptvDetail);
 
       result.fold(
         (failure) {
@@ -61,8 +80,10 @@ class HptvWatchlistBloc
     });
 
     on<RemoveItemHptvEvent>((event, emit) async {
-      final hptvDetail = event.hptvDetail;
-      final result = await removeWatchlist.execute(hptvDetail);
+      final hptvDetail
+      = event.hptvDetail;
+      final result
+      = await removeWatchlist.execute(hptvDetail);
 
       result.fold(
         (failure) {

@@ -1,6 +1,8 @@
 part of 'hptv_on_air_bloc.dart';
 
-abstract class HptvOnAirState extends Equatable {
+abstract
+class HptvOnAirState
+    extends Equatable {
   const HptvOnAirState();
 
   @override
@@ -17,18 +19,23 @@ class HptvOnAirError
     extends HptvOnAirState {
   final String message;
 
-  const HptvOnAirError(this.message);
+  const
+  HptvOnAirError(this.message);
 
   @override
-  List<Object> get props => [message];
+  List<Object> get props
+  => [message];
 }
 
 class HptvOnAirLoaded
     extends HptvOnAirState {
-  final List<Hptv> result;
+  final List<Hptv>
+  result;
 
-  const HptvOnAirLoaded(this.result);
+  const
+  HptvOnAirLoaded(this.result);
 
   @override
-  List<Object> get props => [result];
+  List<Object> get props
+  => [result];
 }

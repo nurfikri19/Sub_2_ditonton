@@ -1,11 +1,13 @@
 part of 'hptv_search_bloc.dart';
 
-abstract class HptvSearchEvent
+abstract
+class HptvSearchEvent
     extends Equatable {
   const HptvSearchEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props
+  => [];
 }
 
 class HptvSearchSetEmpty
@@ -13,10 +15,13 @@ class HptvSearchSetEmpty
 
 class HptvSearchQueryEvent
     extends HptvSearchEvent {
-  final String query;
+  final String
+  query;
 
-  const HptvSearchQueryEvent(this.query);
+  const
+  HptvSearchQueryEvent(this.query);
 
   @override
-  List<Object> get props => [];
+  List<Object> get props
+  => [];
 }

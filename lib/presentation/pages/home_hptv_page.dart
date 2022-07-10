@@ -15,21 +15,29 @@ import 'package:ditonton/presentation/pages/watchlist_hptv_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class HomeHptvPage extends StatefulWidget {
+class HomeHptvPage
+    extends StatefulWidget {
   @override
-  _HomeHptvPageState createState() => _HomeHptvPageState();
-  static const ROUTE_NAME = '/tv';
+  _HomeHptvPageState createState()
+  => _HomeHptvPageState();
+  static
+  const ROUTE_NAME
+  = '/tv';
 }
 
 
-class _HomeHptvPageState extends State<HomeHptvPage> {
+class _HomeHptvPageState
+    extends State<HomeHptvPage> {
   @override
   void initState() {
     super.initState();
     Future.microtask((){
-      context.read<HptvOnAirBloc>().add(HptvOnAirGetEvent());
-      context.read<HptvPopularBloc>().add(HptvPopularGetEvent());
-      context.read<HptvTopRatedBloc>().add(HptvTopRatedGetEvent());
+      context.read<HptvOnAirBloc>()
+          .add(HptvOnAirGetEvent());
+      context.read<HptvPopularBloc>()
+          .add(HptvPopularGetEvent());
+      context.read<HptvTopRatedBloc>()
+          .add(HptvTopRatedGetEvent());
     });
   }
 
@@ -40,40 +48,56 @@ class _HomeHptvPageState extends State<HomeHptvPage> {
         child: Column(
           children: [
             UserAccountsDrawerHeader(
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: AssetImage('assets/circle-g.png'),
+              currentAccountPicture
+                  : CircleAvatar(
+                backgroundImage
+                    : AssetImage('assets/circle-g.png'),
               ),
-              accountName: Text('Ditonton'),
-              accountEmail: Text('ditonton@dicoding.com'),
+              accountName
+                  : Text('Ditonton'),
+              accountEmail
+                  : Text('ditonton@dicoding.com'),
             ),
             ListTile(
-              leading: Icon(Icons.movie),
-              title: Text('Movies'),
+              leading
+                  : Icon(Icons.movie_outlined),
+              title
+                  : Text('Movies'),
               onTap: () {
-                Navigator.pushNamed(context, HomeMoviePage.ROUTE_NAME);
+                Navigator.
+                pushNamed(context, HomeMoviePage.ROUTE_NAME);
               },
             ),
             ListTile(
-              leading: Icon(Icons.tv),
-              title: Text('Television'),
+              leading
+                  : Icon(Icons.tv_outlined),
+              title
+                  : Text('Television'),
               onTap: () {
                 Navigator.pop(context);
               },
             ),
             ExpansionTile(
-              title: Text('Watchlist'),
-              leading: Icon(Icons.save_alt),
-              children: <Widget>[
+              title
+                  : Text('Watchlist'),
+              leading
+                  : Icon(Icons.save_alt_outlined),
+              children
+                  : <Widget>[
                 ListTile(
-                  leading: Icon(Icons.movie),
-                  title: Text('Movie'),
+                  leading
+                      : Icon(Icons.movie_outlined),
+                  title
+                      : Text('Movie'),
                   onTap: () {
                     Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.tv),
-                  title: Text('Television'),
+                  leading
+                      : Icon(Icons.tv_outlined),
+                  title
+                      : Text('Television'),
                   onTap: () {
                     Navigator.pushNamed(
                         context, WatchlistHptvPage.ROUTE_NAME);
@@ -85,20 +109,25 @@ class _HomeHptvPageState extends State<HomeHptvPage> {
               onTap: () {
                 Navigator.pushNamed(context, AboutPage.ROUTE_NAME);
               },
-              leading: Icon(Icons.info_outline),
-              title: Text('About'),
+              leading
+                  : Icon(Icons.info_outline_rounded),
+              title
+                  : Text('About'),
             ),
           ],
         ),
       ),
-      appBar: AppBar(
-        title: Text('Ditonton'),
+      appBar
+          : AppBar(
+        title
+            : Text('Ditonton'),
         actions: [
           IconButton(
             onPressed: () {
               Navigator.pushNamed(context, SearchHptvPage.ROUTE_NAME);
             },
-            icon: Icon(Icons.search),
+            icon
+                : Icon(Icons.search_outlined),
           )
         ],
       ),
@@ -112,15 +141,18 @@ class _HomeHptvPageState extends State<HomeHptvPage> {
                 'Tv on Air',
                 style: kHeading6,
               ),
-              BlocBuilder<HptvOnAirBloc, HptvOnAirState>(
+              BlocBuilder<HptvOnAirBloc,
+                  HptvOnAirState>(
               builder : (context, state) {
                 if (state is HptvOnAirLoading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state is HptvOnAirLoaded) {
+                } else
+                  if (state is HptvOnAirLoaded) {
                   return TvList(state.result);
-                } else if (state is HptvOnAirError) {
+                } else
+                  if (state is HptvOnAirError) {
                   return Text(state.message);
                 } else {
                   return const Text('Failed');
@@ -128,7 +160,8 @@ class _HomeHptvPageState extends State<HomeHptvPage> {
               }), // BlockBuilder
               _buildSubHeading(
                 title: 'Popular TV',
-                onTap: () => Navigator.pushNamed(
+                onTap
+                    : () => Navigator.pushNamed(
                     context, PopularHptvPage.ROUTE_NAME),
               ),
               BlocBuilder<HptvPopularBloc, HptvPopularState>(
@@ -137,28 +170,35 @@ class _HomeHptvPageState extends State<HomeHptvPage> {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state is HptvPopularLoaded) {
+                } else
+                  if (state is HptvPopularLoaded) {
                   return TvList(state.result);
-                } else if (state is HptvPopularError) {
+                } else
+                  if (state is HptvPopularError) {
                   return Text(state.message);
                 } else {
                   return const Text('Failed');
                 }
               }),// BlockBuilder
               _buildSubHeading(
-                title: 'Top Rated TV',
-                onTap: () => Navigator.pushNamed(
+                title
+                    : 'Top Rated TV',
+                onTap
+                    : () => Navigator.pushNamed(
                     context, TopRatedHptvPage.ROUTE_NAME),
               ),
-              BlocBuilder<HptvTopRatedBloc, HptvTopRatedState>(
+              BlocBuilder<HptvTopRatedBloc,
+                  HptvTopRatedState>(
               builder : (context, state) {
                 if (state is HptvTopRatedLoading) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state is HptvTopRatedLoaded) {
+                } else
+                  if (state is HptvTopRatedLoaded) {
                   return TvList(state.result);
-                } else if (state is HptvTopRatedError) {
+                } else
+                  if (state is HptvTopRatedError) {
                   return Text(state.message);
                 } else {
                   return const Text('Failed');
@@ -171,9 +211,11 @@ class _HomeHptvPageState extends State<HomeHptvPage> {
     );
   }
 
-  Row _buildSubHeading({required String title, required Function() onTap}) {
+  Row _buildSubHeading(
+      {required String title, required Function() onTap}) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment
+          : MainAxisAlignment.spaceBetween,
       children: [
         Text(
           title,
@@ -184,7 +226,7 @@ class _HomeHptvPageState extends State<HomeHptvPage> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              children: [Text('See More'), Icon(Icons.arrow_forward_ios)],
+              children: [Text('See More'), Icon(Icons.arrow_forward_ios_outlined)],
             ),
           ),
         ),
@@ -193,10 +235,13 @@ class _HomeHptvPageState extends State<HomeHptvPage> {
   }
 }
 
-class TvList extends StatelessWidget {
-  final List<Hptv> tv;
+class TvList
+    extends StatelessWidget {
+  final List<Hptv>
+  tv;
 
-  TvList(this.tv);
+  TvList
+      (this.tv);
 
   @override
   Widget build(BuildContext context) {
@@ -223,7 +268,8 @@ class TvList extends StatelessWidget {
                   placeholder: (context, url) => Center(
                     child: CircularProgressIndicator(),
                   ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
+                  errorWidget
+                      : (context, url, error) => Icon(Icons.error_outlined),
                 ),
               ),
             ),

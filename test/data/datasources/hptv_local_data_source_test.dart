@@ -11,8 +11,10 @@ void main() {
   late MockDatabaseHelperHptv mockDatabaseHelperTv;
 
   setUp(() {
-    mockDatabaseHelperTv = MockDatabaseHelperHptv();
-    dataSourcetv = HptvLocalDataSourceImpl(databaseHelperhptv: mockDatabaseHelperTv);
+    mockDatabaseHelperTv
+    = MockDatabaseHelperHptv();
+    dataSourcetv
+    = HptvLocalDataSourceImpl(databaseHelperhptv: mockDatabaseHelperTv);
   });
 
   group('save watchlist tv', () {
@@ -20,7 +22,8 @@ void main() {
             () async {
           // arrange
           when(mockDatabaseHelperTv.insertWatchlistTv(testTvTable))
-              .thenAnswer((_) async => 1);
+              .thenAnswer((_) async
+          => 1);
           // act
           final result = await dataSourcetv.insertWatchlistTv(testTvTable);
           // assert
@@ -33,9 +36,11 @@ void main() {
           when(mockDatabaseHelperTv.insertWatchlistTv(testTvTable))
               .thenThrow(Exception());
           // act
-          final call = dataSourcetv.insertWatchlistTv(testTvTable);
+          final call
+          = dataSourcetv.insertWatchlistTv(testTvTable);
           // assert
-          expect(() => call, throwsA(isA<DatabaseException>()));
+          expect(()
+          => call, throwsA(isA<DatabaseException>()));
         });
   });
 
@@ -47,9 +52,11 @@ void main() {
           when(mockDatabaseHelperTv.removeWatchlistTv(testTvTable))
               .thenThrow(Exception());
           // act
-          final call = dataSourcetv.removeWatchlistTv(testTvTable);
+          final call
+          = dataSourcetv.removeWatchlistTv(testTvTable);
           // assert
-          expect(() => call, throwsA(isA<DatabaseException>()));
+          expect(()
+          => call, throwsA(isA<DatabaseException>()));
         });
   });
 
@@ -59,18 +66,22 @@ void main() {
     test('should return Tv Detail Table when data is found', () async {
       // arrange
       when(mockDatabaseHelperTv.getTvById(tId))
-          .thenAnswer((_) async => testTvMap);
+          .thenAnswer((_) async
+      => testTvMap);
       // act
-      final result = await dataSourcetv.getTvById(tId);
+      final result
+      = await dataSourcetv.getTvById(tId);
       // assert
       expect(result, testTvTable);
     });
 
     test('should return null when data is not found', () async {
       // arrange
-      when(mockDatabaseHelperTv.getTvById(tId)).thenAnswer((_) async => null);
+      when(mockDatabaseHelperTv.getTvById(tId)).thenAnswer((_) async
+      => null);
       // act
-      final result = await dataSourcetv.getTvById(tId);
+      final result
+      = await dataSourcetv.getTvById(tId);
       // assert
       expect(result, null);
     });
@@ -80,9 +91,11 @@ void main() {
     test('should return list of TvTable from database', () async {
       // arrange
       when(mockDatabaseHelperTv.getWatchlistTv())
-          .thenAnswer((_) async => [testTvMap]);
+          .thenAnswer((_) async
+      => [testTvMap]);
       // act
-      final result = await dataSourcetv.getWatchlistTv();
+      final result
+      = await dataSourcetv.getWatchlistTv();
       // assert
       expect(result, [testTvTable]);
     });

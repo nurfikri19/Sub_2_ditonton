@@ -28,6 +28,8 @@ class HptvRepositoryImpl implements HptvRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException {
+      return Left(SslFailure('Certificate unvalid'));
     }
   }
 
@@ -40,6 +42,8 @@ class HptvRepositoryImpl implements HptvRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException {
+      return Left(SslFailure('Certificate unvalid'));
     }
   }
 
@@ -52,6 +56,8 @@ class HptvRepositoryImpl implements HptvRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException {
+      return Left(SslFailure('Certificate unvalid'));
     }
   }
 
@@ -64,6 +70,8 @@ class HptvRepositoryImpl implements HptvRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException {
+      return Left(SslFailure('Certificate unvalid'));
     }
   }
 
@@ -76,6 +84,8 @@ class HptvRepositoryImpl implements HptvRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException {
+      return Left(SslFailure('Certificate unvalid'));
     }
   }
 
@@ -88,6 +98,8 @@ class HptvRepositoryImpl implements HptvRepository {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    } on TlsException {
+      return Left(SslFailure('Certificate unvalid'));
     }
   }
 
@@ -112,6 +124,8 @@ class HptvRepositoryImpl implements HptvRepository {
       return Right(result);
     } on DatabaseException catch (e) {
       return Left(DatabaseFailure(e.message));
+    } on TlsException {
+      return Left(SslFailure('Certificate unvalid'));
     }
   }
 

@@ -2,15 +2,12 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/domain/entities/movie.dart';
-import 'package:ditonton/domain/usecases/get_movie_recommendations.dart';
 import 'package:ditonton/presentation/bloc/movie/movie_recommendation_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'recommendation_movie_bloc_test.mocks.dart';
+import '../../presentation/test_bloc/movie.mocks.dart';
 
-@GenerateMocks([MovieRecommendationBloc,GetMovieRecommendations])
 void main() {
   late MockGetMovieRecommendations
   mockGetMovieRecommendation;
@@ -43,7 +40,8 @@ void main() {
           .thenAnswer((_) async => Right(movieList));
       return movieRecommendationBloc;
     },
-    act: (bloc) => bloc.add(const GetMovieRecommendationEvent(movieId)),
+    act: (bloc)
+    => bloc.add(const GetMovieRecommendationEvent(movieId)),
     expect: () =>
         [MovieRecommendationLoading(), MovieRecommendationLoaded(movieList)],
     verify: (bloc) {
@@ -59,7 +57,8 @@ void main() {
             .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
         return movieRecommendationBloc;
       },
-      act: (bloc) => bloc.add(const GetMovieRecommendationEvent(movieId)),
+      act: (bloc)
+      => bloc.add(const GetMovieRecommendationEvent(movieId)),
       expect: () => [
         MovieRecommendationLoading(),
         const MovieRecommendationError('Server Failure')

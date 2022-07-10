@@ -3,14 +3,19 @@ import 'package:ditonton/presentation/pages/home_movie_page.dart';
 import 'package:ditonton/presentation/pages/home_hptv_page.dart';
 import 'package:flutter/material.dart';
 
-class BottomBar extends StatefulWidget {
+class BottomBar
+    extends StatefulWidget {
 
   @override
-  _BottomBarState createState() => _BottomBarState();
+  _BottomBarState createState()
+  => _BottomBarState();
 }
-class _BottomBarState extends State<BottomBar>{
-  int currentIndex=0;
-  final List<Widget> screens =[
+class _BottomBarState
+    extends State<BottomBar>{
+  int
+  currentIndex=0;
+  final List<Widget>
+  screens =[
     HomeMoviePage(),
     HomeHptvPage(),
   ];
@@ -28,14 +33,20 @@ class _BottomBarState extends State<BottomBar>{
             onTap: (index) => setState(()=>currentIndex = index),
             items: [
               BottomNavigationBarItem(
-                icon: Icon(Icons.movie),
-                label: 'Movies',
-                backgroundColor: kDavysGrey,
+                icon
+                    : Icon(Icons.movie_outlined),
+                label
+                    : 'Movies',
+                backgroundColor:
+                kDavysGrey,
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.tv),
-                label: 'Tv',
-                backgroundColor: kDavysGrey,
+                icon
+                    : Icon(Icons.tv_outlined),
+                label
+                    : 'Tv',
+                backgroundColor
+                    : kDavysGrey,
               ),
             ])
     );

@@ -14,10 +14,12 @@ import 'package:ditonton/presentation/pages/watchlist_movies_page.dart';
 import 'package:ditonton/presentation/pages/watchlist_hptv_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+//import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 
 class HomeMoviePage extends StatefulWidget {
   @override
-  _HomeMoviePageState createState() => _HomeMoviePageState();
+  _HomeMoviePageState createState()
+  => _HomeMoviePageState();
   static const ROUTE_NAME = '/home';
 }
 
@@ -96,6 +98,7 @@ class _HomeMoviePageState extends State<HomeMoviePage> {
         actions: [
           IconButton(
             onPressed: () {
+              //FirebaseCrashlytics.instance.crash();
               Navigator.pushNamed(context, SearchPage.ROUTE_NAME);
             },
             icon: Icon(Icons.search),

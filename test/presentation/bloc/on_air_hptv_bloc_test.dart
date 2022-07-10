@@ -2,22 +2,24 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/domain/entities/hptv/hptv.dart';
-import 'package:ditonton/domain/usecases/hptv/get_now_playing_hptv.dart';
 import 'package:ditonton/presentation/bloc/hptv/hptv_on_air_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'on_air_hptv_bloc_test.mocks.dart';
+import '../../presentation/test_bloc/hptv.mocks.dart';
 
-@GenerateMocks([HptvOnAirBloc,GetNowPlayingHptv])
+
 void main() {
-  late MockGetNowPlayingHptv mockGetNowPlayingHptv;
-  late HptvOnAirBloc hptvOnAirBloc;
+  late MockGetNowPlayingHptv
+  mockGetNowPlayingHptv;
+  late HptvOnAirBloc
+  hptvOnAirBloc;
 
   setUp(() {
-    mockGetNowPlayingHptv = MockGetNowPlayingHptv();
-    hptvOnAirBloc = HptvOnAirBloc(mockGetNowPlayingHptv);
+    mockGetNowPlayingHptv
+    = MockGetNowPlayingHptv();
+    hptvOnAirBloc
+    = HptvOnAirBloc(mockGetNowPlayingHptv);
   });
 
   final tvList = <Hptv>[];
@@ -34,8 +36,10 @@ void main() {
             .thenAnswer((_) async => Right(tvList));
         return hptvOnAirBloc;
       },
-      act: (bloc) => bloc.add(HptvOnAirGetEvent()),
-      expect: () => [HptvOnAirLoading(), HptvOnAirLoaded(tvList)],
+      act: (bloc)
+      => bloc.add(HptvOnAirGetEvent()),
+      expect: ()
+      => [HptvOnAirLoading(), HptvOnAirLoaded(tvList)],
       verify: (bloc) {
         verify(mockGetNowPlayingHptv.execute());
       },
@@ -48,7 +52,8 @@ void main() {
             .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
         return hptvOnAirBloc;
       },
-      act: (bloc) => bloc.add(HptvOnAirGetEvent()),
+      act: (bloc)
+      => bloc.add(HptvOnAirGetEvent()),
       expect: () => [
         HptvOnAirLoading(),
         const HptvOnAirError('Server Failure')

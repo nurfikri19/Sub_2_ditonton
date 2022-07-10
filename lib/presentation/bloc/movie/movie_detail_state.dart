@@ -5,7 +5,8 @@ abstract class MovieDetailState
   const MovieDetailState();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props
+  => [];
 }
 
 class MovieDetailEmpty
@@ -16,20 +17,26 @@ class MovieDetailLoading
 
 class MovieDetailError
     extends MovieDetailState {
-  final String message;
+  final String
+  message;
 
-  const MovieDetailError(this.message);
+  const
+  MovieDetailError(this.message);
 
   @override
-  List<Object> get props => [message];
+  List<Object> get props
+  => [message];
 }
 
 class MovieDetailLoaded
     extends MovieDetailState {
-  final MovieDetail movieDetail;
+  final MovieDetail
+  movieDetail;
 
-  const MovieDetailLoaded(this.movieDetail);
+  const
+  MovieDetailLoaded(this.movieDetail);
 
   @override
-  List<Object> get props => [movieDetail];
+  List<Object> get props
+  => [movieDetail];
 }

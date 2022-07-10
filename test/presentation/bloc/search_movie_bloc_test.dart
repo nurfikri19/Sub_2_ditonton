@@ -2,15 +2,12 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/domain/entities/movie.dart';
-import 'package:ditonton/domain/usecases/search_movies.dart';
 import 'package:ditonton/presentation/bloc/movie/movie_search_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'search_movie_bloc_test.mocks.dart';
+import '../../presentation/test_bloc/movie.mocks.dart';
 
-@GenerateMocks([MovieSearchBloc,SearchMovies])
 void main() {
   late MockSearchMovies
   mockSearchMovies;
@@ -63,7 +60,8 @@ void main() {
             .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
         return movieSearchBloc;
       },
-      act: (bloc) => bloc.add(const MovieSearchQueryEvent(query)),
+      act: (bloc)
+      => bloc.add(const MovieSearchQueryEvent(query)),
       expect: () =>
           [MovieSearchLoading(), const MovieSearchError('Server Failure')],
       verify: (bloc) {

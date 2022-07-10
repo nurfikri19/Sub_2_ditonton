@@ -1,11 +1,14 @@
 part of 'movie_now_playing_bloc.dart';
 
-abstract class MovieNowPlayingEvent
+abstract
+class MovieNowPlayingEvent
     extends Equatable {
-  const MovieNowPlayingEvent();
+  const
+  MovieNowPlayingEvent();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props
+  => [];
 }
 
 class MovieNowPlayingGetEvent

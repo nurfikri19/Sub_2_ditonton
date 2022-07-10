@@ -1,19 +1,14 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/domain/usecases/hptv/get_watchlist_status_hptv.dart';
-import 'package:ditonton/domain/usecases/hptv/get_watchlist_hptv.dart';
-import 'package:ditonton/domain/usecases/hptv/remove_watchlist_hptv.dart';
-import 'package:ditonton/domain/usecases/hptv/save_watchlist_hptv.dart';
 import 'package:ditonton/presentation/bloc/hptv/hptv_watchlist_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../dummy_data/dummy_objects_hptv.dart';
-import 'watchlist_hptv_bloc_test.mocks.dart';
+import '../../presentation/test_bloc/hptv.mocks.dart';
 
-@GenerateMocks([HptvWatchlistBloc,GetWatchlistHptv,GetWatchListStatusHptv,RemoveWatchlistHptv,SaveWatchlistHptv])
+
 void main() {
   late MockGetWatchlistHptv 
   mockGetWatchlistHptv;
@@ -61,7 +56,8 @@ void main() {
           .thenAnswer((_) async => Right(testWatchlistHptvList));
       return hptvWatchlistBloc;
     },
-    act: (bloc) => bloc.add(GetListEvent()),
+    act: (bloc)
+    => bloc.add(GetListEvent()),
     expect: () =>
         [HptvWatchlistLoading(), HptvWatchlistLoaded(testWatchlistHptvList)],
     verify: (bloc) {
@@ -76,7 +72,8 @@ void main() {
           .thenAnswer((_) async => Left(ServerFailure("Can't get data")));
       return hptvWatchlistBloc;
     },
-    act: (bloc) => bloc.add(GetListEvent()),
+    act: (bloc)
+    => bloc.add(GetListEvent()),
     expect: () =>
         [HptvWatchlistLoading(), const HptvWatchlistError("Can't get data")],
     verify: (bloc) {
@@ -91,8 +88,10 @@ void main() {
           .thenAnswer((_) async => true);
       return hptvWatchlistBloc;
     },
-    act: (bloc) => bloc.add(const GetStatusTvEvent(tvId)),
-    expect: () => [const HptvWatchlistStatusLoaded(true)],
+    act: (bloc)
+    => bloc.add(const GetStatusTvEvent(tvId)),
+    expect: ()
+    => [const HptvWatchlistStatusLoaded(true)],
     verify: (bloc) {
       verify(mockGetWatchListStatus.execute(tvId));
     },
@@ -106,8 +105,10 @@ void main() {
       return hptvWatchlistBloc;
     },
 
-    act: (bloc) => bloc.add(AddItemTvEvent(testTvDetail)),
-    expect: () => [const HptvWatchlistSuccess("Success")],
+    act: (bloc)
+    => bloc.add(AddItemTvEvent(testTvDetail)),
+    expect: ()
+    => [const HptvWatchlistSuccess("Success")],
     verify: (bloc) {
       verify(mockSaveWatchlist.execute(testTvDetail));
     },
@@ -120,8 +121,10 @@ void main() {
           .thenAnswer((_) async => const Right("Removed"));
       return hptvWatchlistBloc;
     },
-    act: (bloc) => bloc.add(RemoveItemHptvEvent(testTvDetail)),
-    expect: () => [const HptvWatchlistSuccess("Removed")],
+    act: (bloc)
+    => bloc.add(RemoveItemHptvEvent(testTvDetail)),
+    expect: ()
+    => [const HptvWatchlistSuccess("Removed")],
     verify: (bloc) {
       verify(mockRemoveWatchlist.execute(testTvDetail));
     },
@@ -134,8 +137,10 @@ void main() {
           .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
       return hptvWatchlistBloc;
     },
-    act: (bloc) => bloc.add(AddItemTvEvent(testTvDetail)),
-    expect: () => [const HptvWatchlistError("Failed")],
+    act: (bloc)
+    => bloc.add(AddItemTvEvent(testTvDetail)),
+    expect: ()
+    => [const HptvWatchlistError("Failed")],
     verify: (bloc) {
       verify(mockSaveWatchlist.execute(testTvDetail));
     },
@@ -148,8 +153,10 @@ void main() {
           .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
       return hptvWatchlistBloc;
     },
-    act: (bloc) => bloc.add(RemoveItemHptvEvent(testTvDetail)),
-    expect: () => [const HptvWatchlistError("Failed")],
+    act: (bloc)
+    => bloc.add(RemoveItemHptvEvent(testTvDetail)),
+    expect: ()
+    => [const HptvWatchlistError("Failed")],
     verify: (bloc) {
       verify(mockRemoveWatchlist.execute(testTvDetail));
     },

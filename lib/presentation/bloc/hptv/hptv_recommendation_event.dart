@@ -1,6 +1,7 @@
 part of 'hptv_recommendation_bloc.dart';
 
-abstract class HptvRecommendationEvent
+abstract
+class HptvRecommendationEvent
     extends Equatable {
   const HptvRecommendationEvent();
 
@@ -12,8 +13,10 @@ class GetHptvRecommendationEvent
     extends HptvRecommendationEvent {
   final int id;
 
-  const GetHptvRecommendationEvent(this.id);
+  const
+  GetHptvRecommendationEvent(this.id);
 
   @override
-  List<Object> get props => [];
+  List<Object> get props
+  => [];
 }

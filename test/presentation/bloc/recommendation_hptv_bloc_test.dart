@@ -2,23 +2,25 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/domain/entities/hptv/hptv.dart';
-import 'package:ditonton/domain/usecases/hptv/get_hptv_recomendations.dart';
 import 'package:ditonton/presentation/bloc/hptv/hptv_recommendation_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'recommendation_hptv_bloc_test.mocks.dart';
+import '../../presentation/test_bloc/hptv.mocks.dart';
 
-@GenerateMocks([HptvRecommendationBloc,GetHptvRecommendations])
 void main() {
-  late MockGetHptvRecommendations mockGetHptvRecommendation;
-  late HptvRecommendationBloc hptvRecommendationBloc;
+  late MockGetHptvRecommendations
+  mockGetHptvRecommendation;
+  late HptvRecommendationBloc
+  hptvRecommendationBloc;
 
   setUp(() {
-    mockGetHptvRecommendation = MockGetHptvRecommendations();
-    hptvRecommendationBloc = HptvRecommendationBloc(
-      getHptvRecommendations: mockGetHptvRecommendation,
+    mockGetHptvRecommendation
+    = MockGetHptvRecommendations();
+    hptvRecommendationBloc
+    = HptvRecommendationBloc(
+      getHptvRecommendations
+          : mockGetHptvRecommendation,
     );
   });
 
@@ -26,8 +28,10 @@ void main() {
     expect(hptvRecommendationBloc.state, HptvRecommendationEmpty());
   });
 
-  const tvId = 1;
-  final tvList = <Hptv>[];
+  const
+  tvId = 1;
+  final tvList
+  = <Hptv>[];
 
   blocTest<HptvRecommendationBloc, HptvRecommendationState>(
     'Should emit [Loading, Loaded] when data is gotten successfully',
@@ -36,7 +40,8 @@ void main() {
           .thenAnswer((_) async => Right(tvList));
       return hptvRecommendationBloc;
     },
-    act: (bloc) => bloc.add(const GetHptvRecommendationEvent(tvId)),
+    act: (bloc)
+    => bloc.add(const GetHptvRecommendationEvent(tvId)),
     expect: () =>
         [HptvRecommendationLoading(), HptvRecommendationLoaded(tvList)],
     verify: (bloc) {

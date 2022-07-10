@@ -148,8 +148,10 @@ void init() {
           () => HptvLocalDataSourceImpl(databaseHelperhptv: locator()));
 
   // helper
-  locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
-  locator.registerLazySingleton<DatabaseHelperHptv>(() => DatabaseHelperHptv());
+  locator.registerLazySingleton<DatabaseHelper>(()
+  => DatabaseHelper());
+  locator.registerLazySingleton<DatabaseHelperHptv>(()
+  => DatabaseHelperHptv());
 
   // external
   locator.registerLazySingleton(() => HTTPSSLPinning.client);

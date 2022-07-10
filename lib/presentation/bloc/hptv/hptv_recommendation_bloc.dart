@@ -7,15 +7,19 @@ part 'hptv_recommendation_event.dart';
 part 'hptv_recommendation_state.dart';
 
 class HptvRecommendationBloc
-    extends Bloc<HptvRecommendationEvent, HptvRecommendationState> {
-  final GetHptvRecommendations getHptvRecommendations;
+    extends
+    Bloc<HptvRecommendationEvent,
+        HptvRecommendationState> {
+  final GetHptvRecommendations
+  getHptvRecommendations;
 
   HptvRecommendationBloc({
     required this.getHptvRecommendations,
   }) : super(HptvRecommendationEmpty()) {
      on<GetHptvRecommendationEvent>((event, emit) async {
       emit(HptvRecommendationLoading());
-      final result = await getHptvRecommendations.execute(event.id);
+      final result
+      = await getHptvRecommendations.execute(event.id);
       result.fold(
         (failure) {
           emit(HptvRecommendationError(failure.message));

@@ -1,19 +1,13 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/domain/usecases/get_watchlist_movies.dart';
-import 'package:ditonton/domain/usecases/get_watchlist_status.dart';
-import 'package:ditonton/domain/usecases/remove_watchlist.dart';
-import 'package:ditonton/domain/usecases/save_watchlist.dart';
 import 'package:ditonton/presentation/bloc/movie/movie_watchlist_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
 import '../../dummy_data/dummy_objects.dart';
-import 'watchlist_movie_bloc_test.mocks.dart';
+import '../../presentation/test_bloc/movie.mocks.dart';
 
-@GenerateMocks([MovieWatchlistBloc,GetWatchlistMovies,GetWatchListStatus,RemoveWatchlist,SaveWatchlist])
 void main() {
   late MockGetWatchlistMovies
   mockGetWatchlistMovies;
@@ -97,8 +91,10 @@ void main() {
       return
         movieWatchlistBloc;
     },
-    act: (bloc) => bloc.add(const GetStatusMovieEvent(movieId)),
-    expect: () => [const MovieWatchlistStatusLoaded(true)],
+    act: (bloc)
+    => bloc.add(const GetStatusMovieEvent(movieId)),
+    expect: ()
+    => [const MovieWatchlistStatusLoaded(true)],
     verify: (bloc) {
       verify(mockGetWatchListStatus.execute(movieId));
     },

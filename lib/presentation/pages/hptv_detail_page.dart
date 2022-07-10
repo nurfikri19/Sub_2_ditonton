@@ -103,7 +103,7 @@ class DetailContent extends StatelessWidget {
           placeholder: (context, url) => Center(
             child: CircularProgressIndicator(),
           ),
-          errorWidget: (context, url, error) => Icon(Icons.error),
+          errorWidget: (context, url, error) => Icon(Icons.error_outlined),
         ),
         Container(
           margin: const EdgeInsets.only(top: 48 + 8),
@@ -146,8 +146,8 @@ class DetailContent extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   isAddedWatchlistHptv
-                                      ? Icon(Icons.check)
-                                      : Icon(Icons.add),
+                                      ? Icon(Icons.check_outlined)
+                                      : Icon(Icons.add_outlined),
                                   Text('Watchlist'),
                                 ],
                               ),
@@ -164,7 +164,7 @@ class DetailContent extends StatelessWidget {
                                   rating: tv.voteAverage / 2,
                                   itemCount: 5,
                                   itemBuilder: (context, index) => Icon(
-                                    Icons.star_outlined,
+                                    Icons.star_border_outlined,
                                     color: kMikadoYellow,
                                   ),
                                   itemSize: 24,
@@ -229,7 +229,7 @@ class DetailContent extends StatelessWidget {
                                                     ),
                                                 errorWidget:
                                                     (context, url, error) =>
-                                                    Icon(Icons.error),
+                                                    Icon(Icons.error_outlined),
                                               ),
                                             ),
                                           ),
@@ -267,10 +267,12 @@ class DetailContent extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: CircleAvatar(
-            backgroundColor: kRichBlack,
-            foregroundColor: Colors.white,
+            backgroundColor
+                : kRichBlack,
+            foregroundColor
+                : Colors.white,
             child: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: Icon(Icons.arrow_back_outlined),
               onPressed: () {
                 Navigator.pop(context);
               },

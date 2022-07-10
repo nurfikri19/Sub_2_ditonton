@@ -1,11 +1,13 @@
 part of 'hptv_popular_bloc.dart';
 
-abstract class HptvPopularState
+abstract
+class HptvPopularState
     extends Equatable {
   const HptvPopularState();
 
   @override
-  List<Object> get props => [];
+  List<Object> get props
+  => [];
 }
 
 class HptvPopularEmpty
@@ -18,18 +20,23 @@ class HptvPopularError
     extends HptvPopularState {
   final String message;
 
-  const HptvPopularError(this.message);
+  const
+  HptvPopularError(this.message);
 
   @override
-  List<Object> get props => [message];
+  List<Object> get props
+  => [message];
 }
 
 class HptvPopularLoaded
     extends HptvPopularState {
-  final List<Hptv> result;
+  final List<Hptv>
+  result;
 
-  const HptvPopularLoaded(this.result);
+  const
+  HptvPopularLoaded(this.result);
 
   @override
-  List<Object> get props => [result];
+  List<Object> get props
+  => [result];
 }

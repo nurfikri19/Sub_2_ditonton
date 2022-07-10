@@ -1,23 +1,24 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
-import 'package:ditonton/domain/usecases/hptv/get_popular_hptv.dart';
 import 'package:ditonton/presentation/bloc/hptv/hptv_popular_bloc.dart';
-import 'package:mockito/annotations.dart';
 import 'package:ditonton/domain/entities/hptv/hptv.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 
-import 'popular_hptv_bloc_test.mocks.dart';
+import '../../presentation/test_bloc/hptv.mocks.dart';
 
-@GenerateMocks([GetPopularHptv, HptvPopularBloc])
 void main() {
-  late MockGetPopularHptv mockGetPopularHptv;
-  late HptvPopularBloc hptvPopularBloc;
+  late MockGetPopularHptv
+  mockGetPopularHptv;
+  late HptvPopularBloc
+  hptvPopularBloc;
 
   setUp(() {
-    mockGetPopularHptv = MockGetPopularHptv();
-    hptvPopularBloc = HptvPopularBloc(mockGetPopularHptv);
+    mockGetPopularHptv
+    = MockGetPopularHptv();
+    hptvPopularBloc
+    = HptvPopularBloc(mockGetPopularHptv);
   });
 
   final TvList = <Hptv>[];
@@ -33,8 +34,10 @@ void main() {
         when(mockGetPopularHptv.execute()).thenAnswer((_) async => Right(TvList));
         return hptvPopularBloc;
       },
-      act: (bloc) => bloc.add(HptvPopularGetEvent()),
-      expect: () => [HptvPopularLoading(), HptvPopularLoaded(TvList)],
+      act: (bloc)
+      => bloc.add(HptvPopularGetEvent()),
+      expect: ()
+      => [HptvPopularLoading(), HptvPopularLoaded(TvList)],
       verify: (bloc) {
         verify(mockGetPopularHptv.execute());
       },
@@ -47,8 +50,10 @@ void main() {
             .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
         return hptvPopularBloc;
       },
-      act: (bloc) => bloc.add(HptvPopularGetEvent()),
-      expect: () => [HptvPopularLoading(),  HptvPopularError('Server Failure')],
+      act: (bloc)
+      => bloc.add(HptvPopularGetEvent()),
+      expect: ()
+      => [HptvPopularLoading(),  HptvPopularError('Server Failure')],
       verify: (bloc) {
         verify(mockGetPopularHptv.execute());
       },

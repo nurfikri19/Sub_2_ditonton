@@ -1,9 +1,9 @@
 import 'package:ditonton/common/constants.dart';
 import 'package:ditonton/common/utils.dart';
 import 'package:ditonton/data/datasources/http_ssl_pinning.dart';
-import 'package:ditonton/presentation/bloc/movie//movie_detail_bloc.dart';
+import 'package:ditonton/presentation/bloc/movie/movie_detail_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie/movie_now_playing_bloc.dart';
-import 'package:ditonton/presentation/bloc/movie//movie_popular_bloc.dart';
+import 'package:ditonton/presentation/bloc/movie/movie_popular_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie/movie_recommendation_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie/movie_search_bloc.dart';
 import 'package:ditonton/presentation/bloc/movie/movie_top_rated_bloc.dart';
@@ -38,81 +38,106 @@ import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  await HTTPSSLPinning.init();
+  await
+  Firebase.initializeApp();
+  await
+  HTTPSSLPinning.init();
   di.init();
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp
+    extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
         /// bloc movie
         BlocProvider(
-          create: (_) => di.locator<MovieDetailBloc>(),
+          create: (_)
+          => di.locator<MovieDetailBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<MoviePopularBloc>(),
+          create: (_)
+          => di.locator<MoviePopularBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<MovieRecommendationBloc>(),
+          create: (_)
+          => di.locator<MovieRecommendationBloc>(),
         ),
         BlocProvider(
           create: (_) => di.locator<MovieSearchBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<MovieTopRatedBloc>(),
+          create: (_)
+          => di.locator<MovieTopRatedBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<MovieNowPlayingBloc>(),
+          create: (_)
+          => di.locator<MovieNowPlayingBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<MovieWatchlistBloc>(),
+          create: (_)
+          => di.locator<MovieWatchlistBloc>(),
         ),
 
         /// bloc tv
         BlocProvider(
-          create: (_) => di.locator<HptvDetailBloc>(),
+          create: (_)
+          => di.locator<HptvDetailBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<HptvRecommendationBloc>(),
+          create: (_)
+          => di.locator<HptvRecommendationBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<HptvSearchBloc>(),
+          create: (_)
+          => di.locator<HptvSearchBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<HptvPopularBloc>(),
+          create: (_)
+          => di.locator<HptvPopularBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<HptvTopRatedBloc>(),
+          create: (_)
+          => di.locator<HptvTopRatedBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<HptvOnAirBloc>(),
+          create: (_)
+          => di.locator<HptvOnAirBloc>(),
         ),
         BlocProvider(
-          create: (_) => di.locator<HptvWatchlistBloc>(),
+          create: (_)
+          => di.locator<HptvWatchlistBloc>(),
         ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData.dark().copyWith(
-          colorScheme: kColorScheme,
-          primaryColor: kRichBlack,
-          scaffoldBackgroundColor: kRichBlack,
-          textTheme: kTextTheme,
+          colorScheme:
+          kColorScheme,
+          primaryColor:
+          kRichBlack,
+          scaffoldBackgroundColor:
+          kRichBlack,
+          textTheme:
+          kTextTheme,
         ),
         home: BottomBar(),
-        navigatorObservers: [routeObserver],
-        onGenerateRoute: (RouteSettings settings) {
+        navigatorObservers:
+        [routeObserver],
+        onGenerateRoute:
+            (RouteSettings settings) {
           switch (settings.name) {
             case '/home':
-              return MaterialPageRoute(builder: (_) => HomeMoviePage());
+              return MaterialPageRoute(builder:
+                  (_) => HomeMoviePage());
             case PopularMoviesPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) => PopularMoviesPage());
+              return CupertinoPageRoute(builder:
+                  (_) => PopularMoviesPage());
             case TopRatedMoviesPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) => TopRatedMoviesPage());
+              return CupertinoPageRoute(builder:
+                  (_) => TopRatedMoviesPage());
             case MovieDetailPage.ROUTE_NAME:
               final id = settings.arguments as int;
               return MaterialPageRoute(
@@ -120,11 +145,14 @@ class MyApp extends StatelessWidget {
                 settings: settings,
               );
             case '/tv':
-              return MaterialPageRoute(builder: (_) => HomeHptvPage());
+              return MaterialPageRoute(builder:
+                  (_) => HomeHptvPage());
             case PopularHptvPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) => PopularHptvPage());
+              return CupertinoPageRoute(builder:
+                  (_) => PopularHptvPage());
             case TopRatedHptvPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) => TopRatedHptvPage());
+              return CupertinoPageRoute(builder:
+                  (_) => TopRatedHptvPage());
             case HptvDetailPage.ROUTE_NAME:
               final id = settings.arguments as int;
               return MaterialPageRoute(
@@ -132,20 +160,26 @@ class MyApp extends StatelessWidget {
                 settings: settings,
               );
             case SearchPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) => SearchPage());
+              return CupertinoPageRoute(builder:
+                  (_) => SearchPage());
             case SearchHptvPage.ROUTE_NAME:
-              return CupertinoPageRoute(builder: (_) => SearchHptvPage());
+              return CupertinoPageRoute(builder:
+                  (_) => SearchHptvPage());
             case WatchlistMoviesPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => WatchlistMoviesPage());
+              return MaterialPageRoute(builder:
+                  (_) => WatchlistMoviesPage());
             case WatchlistHptvPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => WatchlistHptvPage());
+              return MaterialPageRoute(builder:
+                  (_) => WatchlistHptvPage());
             case AboutPage.ROUTE_NAME:
-              return MaterialPageRoute(builder: (_) => AboutPage());
+              return MaterialPageRoute(builder:
+                  (_) => AboutPage());
             default:
               return MaterialPageRoute(builder: (_) {
                 return Scaffold(
                   body: Center(
                     child: Text('Page not found :('),
+
                   ),
                 );
               });

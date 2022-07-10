@@ -2,23 +2,26 @@ import 'package:bloc_test/bloc_test.dart';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/common/failure.dart';
 import 'package:ditonton/domain/entities/hptv/hptv.dart';
-import 'package:ditonton/domain/usecases/hptv/search_hptv.dart';
 import 'package:ditonton/presentation/bloc/hptv/hptv_search_bloc.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 
-import 'search_hptv_bloc_test.mocks.dart';
+import '../../presentation/test_bloc/hptv.mocks.dart';
 
-@GenerateMocks([HptvSearchBloc,SearchHptv])
+
 void main() {
-  late MockSearchHptv mockSearchHptv;
-  late HptvSearchBloc hptvSearchBloc;
+  late MockSearchHptv
+  mockSearchHptv;
+  late HptvSearchBloc
+  hptvSearchBloc;
 
   setUp(() {
-    mockSearchHptv = MockSearchHptv();
-    hptvSearchBloc = HptvSearchBloc(
-      searchHptv: mockSearchHptv,
+    mockSearchHptv
+    = MockSearchHptv();
+    hptvSearchBloc
+    = HptvSearchBloc(
+      searchHptv
+          : mockSearchHptv,
     );
   });
 
@@ -38,8 +41,10 @@ void main() {
           .thenAnswer((_) async => Right(tvList));
       return hptvSearchBloc;
     },
-    act: (bloc) => bloc.add(const HptvSearchQueryEvent(query)),
-    expect: () => [HptvSearchLoading(), HptvSearchLoaded(tvList)],
+    act: (bloc)
+    => bloc.add(const HptvSearchQueryEvent(query)),
+    expect: ()
+    => [HptvSearchLoading(), HptvSearchLoaded(tvList)],
     verify: (bloc) {
       verify(mockSearchHptv.execute(query));
     },
@@ -53,7 +58,8 @@ void main() {
             .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
         return hptvSearchBloc;
       },
-      act: (bloc) => bloc.add(const HptvSearchQueryEvent(query)),
+      act: (bloc)
+      => bloc.add(const HptvSearchQueryEvent(query)),
       expect: () =>
           [HptvSearchLoading(), const HptvSearchError('Server Failure')],
       verify: (bloc) {
